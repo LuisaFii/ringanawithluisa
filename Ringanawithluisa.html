@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ringana with Luisa — Fresh Wellness, Coming to America</title>
+<meta name="description" content="Ringana is coming to America. Fresh, radically clean skincare and supplements from Austria — three decades in the making. Be first to know.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F5EBE1;
+    --cream-deep:#E2C5AE;
+    --blush:#E5ACBF;
+    --rose:#B5677A;
+    --espresso:#3D2B24;
+    --pine:#1C3227;
+    --pine-soft:#2E4A3B;
+    --line:rgba(61,43,36,0.14);
+    --max:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--espresso);
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    line-height:1.12;
+    margin:0;
+    color:var(--espresso);
+  }
+  em{font-style:italic; color:var(--rose);}
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--rose);
+    font-weight:600;
+    margin-bottom:14px;
+    display:inline-block;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,235,225,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
+  .brand{font-family:'Fraunces', serif; font-size:19px; font-weight:500;}
+  .navlinks{display:flex; gap:28px; font-size:14.5px; font-weight:500;}
+  .navlinks a{text-decoration:none; opacity:0.75; transition:opacity .2s;}
+  .navlinks a:hover{opacity:1;}
+  .navcta{
+    background:var(--pine); color:var(--cream);
+    padding:10px 20px; border-radius:100px;
+    font-size:14px; font-weight:600; text-decoration:none;
+    white-space:nowrap;
+  }
+  @media(max-width:720px){ .navlinks{display:none;} }
+
+  /* HERO */
+  .hero{padding:76px 0 60px;}
+  .hero .wrap{display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;}
+  @media(max-width:900px){ .hero .wrap{grid-template-columns:1fr;} }
+  .hero h1{font-size:clamp(34px, 5vw, 54px); letter-spacing:-0.01em;}
+  .hero p.lede{font-size:19px; max-width:52ch; margin-top:20px; opacity:0.85;}
+  .hero-ctas{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--pine); color:var(--cream);
+    padding:15px 28px; border-radius:100px; text-decoration:none;
+    font-weight:600; font-size:15px; border:none; cursor:pointer;
+    transition:transform .15s ease, background .2s;
+  }
+  .btn-primary:hover{background:var(--pine-soft); transform:translateY(-1px);}
+  .btn-ghost{
+    padding:15px 26px; border-radius:100px; text-decoration:none;
+    font-weight:600; font-size:15px; border:1.5px solid var(--espresso);
+    opacity:0.75;
+  }
+  .hero-card{
+    background:var(--cream-deep);
+    border-radius:22px;
+    padding:34px;
+    position:relative;
+  }
+  .hero-card img{width:100%; border-radius:14px; display:block; object-fit:cover; aspect-ratio:4/5;}
+  .hero-tag{
+    position:absolute; bottom:-18px; left:34px;
+    background:var(--espresso); color:var(--cream);
+    padding:10px 18px; border-radius:100px; font-size:13.5px; font-weight:600;
+    box-shadow:0 8px 24px rgba(61,43,36,0.25);
+  }
+
+  .stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+    margin-top:64px; padding-top:40px; border-top:1px solid var(--line);
+  }
+  @media(max-width:720px){ .stats{grid-template-columns:repeat(2,1fr);} }
+  .stat b{font-family:'Fraunces', serif; font-size:30px; font-weight:500; display:block;}
+  .stat span{font-size:13.5px; opacity:0.7;}
+
+  /* SECTION GENERIC */
+  section{padding:80px 0;}
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(28px,3.6vw,38px);}
+  .section-head p{margin-top:14px; font-size:17px; opacity:0.82;}
+
+  /* divider - signature gradient */
+  .divider{
+    height:3px; width:100%;
+    background:linear-gradient(90deg, var(--cream-deep), var(--blush), var(--rose));
+    border:none; margin:0;
+  }
+
+  /* LEGACY / TIMELINE */
+  .timeline{position:relative; padding-left:28px; border-left:2px solid var(--line);}
+  .tl-item{position:relative; padding-bottom:38px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:''; position:absolute; left:-34px; top:4px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--rose); border:3px solid var(--cream);
+    box-shadow:0 0 0 2px var(--rose);
+  }
+  .tl-year{font-size:14px; font-weight:700; color:var(--rose); letter-spacing:0.04em;}
+  .tl-item h3{font-size:20px; margin-top:4px;}
+  .tl-item p{margin-top:6px; font-size:15.5px; opacity:0.8; max-width:56ch;}
+
+  .legacy-quote{
+    background:var(--pine); color:var(--cream);
+    border-radius:20px; padding:38px 40px; margin-top:52px;
+    font-family:'Fraunces', serif; font-size:22px; font-weight:400; font-style:italic;
+    line-height:1.5;
+  }
+
+  /* PRODUCTS */
+  .cards3{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media(max-width:840px){ .cards3{grid-template-columns:1fr;} }
+  .card{
+    background:#fff; border-radius:18px; padding:30px;
+    border:1px solid var(--line);
+  }
+  .card .tag{
+    display:inline-block; font-size:12.5px; font-weight:700; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--pine); background:rgba(28,50,39,0.08);
+    padding:5px 12px; border-radius:100px; margin-bottom:16px;
+  }
+  .card h3{font-size:21px;}
+  .card p{font-size:15px; opacity:0.78; margin-top:10px;}
+
+  /* OPPORTUNITY */
+  .opp-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;}
+  @media(max-width:900px){ .opp-grid{grid-template-columns:1fr;} }
+  .opp-list{display:flex; flex-direction:column; gap:26px;}
+  .opp-item{display:flex; gap:18px;}
+  .opp-num{
+    font-family:'Fraunces', serif; font-size:22px; color:var(--rose);
+    min-width:34px;
+  }
+  .opp-item h3{font-size:18.5px;}
+  .opp-item p{font-size:15px; opacity:0.78; margin-top:4px;}
+  .opp-card{
+    background:var(--blush); border-radius:20px; padding:36px;
+  }
+  .opp-card .num-big{font-family:'Fraunces', serif; font-size:46px; font-weight:500;}
+  .opp-card p{margin-top:10px; font-size:15.5px; opacity:0.85;}
+
+  /* ABOUT */
+  .about{background:var(--cream-deep);}
+  .about-grid{display:grid; grid-template-columns:0.8fr 1.2fr; gap:52px; align-items:center;}
+  @media(max-width:900px){ .about-grid{grid-template-columns:1fr;} }
+  .about-grid img{width:100%; border-radius:18px; aspect-ratio:4/5; object-fit:cover;}
+  .about-grid h2{font-size:clamp(26px,3.4vw,34px);}
+  .about-grid p{margin-top:16px; font-size:16.5px; opacity:0.88;}
+  .about-grid p.script{font-family:'Fraunces', serif; font-style:italic; font-size:19px; color:var(--rose); opacity:1; margin-top:22px;}
+
+  /* CTA FORM */
+  .cta-section{background:var(--pine); color:var(--cream);}
+  .cta-section .section-head p{color:var(--cream); opacity:0.82;}
+  .cta-section .section-head h2{color:var(--cream);}
+  form.signup{display:flex; gap:12px; max-width:480px; flex-wrap:wrap;}
+  form.signup input[type=email]{
+    flex:1; min-width:220px; padding:15px 18px; border-radius:100px; border:none;
+    font-family:'Plus Jakarta Sans', sans-serif; font-size:15px;
+  }
+  form.signup button{
+    background:var(--blush); color:var(--espresso); border:none;
+    padding:15px 26px; border-radius:100px; font-weight:700; font-size:15px; cursor:pointer;
+  }
+  .fineprint{font-size:13px; opacity:0.6; margin-top:16px;}
+
+  footer{padding:44px 0; border-top:1px solid var(--line);}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:13.5px; opacity:0.7;}
+  .disclaimer{font-size:12.5px; opacity:0.55; max-width:70ch; margin-top:14px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Ringana · with Luisa</div>
+    <div class="navlinks">
+      <a href="#story">The Story</a>
+      <a href="#products">The Products</a>
+      <a href="#opportunity">The Opportunity</a>
+      <a href="#about">About Me</a>
+    </div>
+    <a class="navcta" href="#signup">Get Early Access</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Coming to the United States · 2026</span>
+      <h1>Fresh wellness that was never meant to <em>compromise.</em></h1>
+      <p class="lede">For nearly three decades, a family-founded Austrian company has made skincare and supplements one way: genuinely fresh, free of unnecessary synthetics, and potent enough to actually change your daily routine. Now Ringana is opening its doors in America — and I'd love for you to be among the first to see it.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#signup">Get Early Access</a>
+        <a class="btn-ghost" href="#story">Read the Story</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <img src="luisa-hero.jpg" alt="Luisa Fischer">
+      <div class="hero-tag">Menopause &amp; hormone health educator</div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><b>1996</b><span>Founded in Austria, family-led today</span></div>
+      <div class="stat"><b>30+</b><span>Countries where Ringana is sold</span></div>
+      <div class="stat"><b>500+</b><span>Women on my own team worldwide</span></div>
+      <div class="stat"><b>$85M</b><span>New U.S. production investment</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="story">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Why Ringana</span>
+      <h2>A company built on one uncomfortable ingredient label.</h2>
+      <p>I've spent my career explaining what happens inside a woman's body during hormonal transitions — puberty, postpartum, perimenopause. Ringana's founding story is the same instinct, aimed at what goes <em>on</em> the body instead.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">1996</div>
+        <h3>The toothpaste moment</h3>
+        <p>In Hartberg, Austria, Andreas Wilfinger and Ulla Wannemacher read the ingredient list on a toothpaste their young son had brought home — and didn't like what they found in a product made for a child. Rather than accept it, they built the alternative.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2013</div>
+        <h3>The Frischewerk</h3>
+        <p>Ringana opens its own "fresh factory," bringing formulation and production fully in-house — no outsourcing, no third-party fillers.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2021</div>
+        <h3>The campus</h3>
+        <p>A new headquarters opens in St. Johann in der Haide, Austria — one of the country's most ambitious sustainable builds, powered by geothermal and solar energy.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2026</div>
+        <h3>America</h3>
+        <p>Ringana invests $85 million in its first U.S. headquarters and production facility in Roanoke, Virginia — so products are made fresh on American soil, for American customers.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">Next</div>
+        <h3>Your chapter</h3>
+        <p>The American story is just beginning. The people who step in before launch help write what it becomes.</p>
+      </div>
+    </div>
+
+    <div class="legacy-quote">
+      "What goes on your body and in your body should need no apology." — the conviction Ringana was founded on, and one I recognized the moment I first read their ingredient philosophy.
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The Products</span>
+      <h2>One standard, for your whole routine.</h2>
+      <p>Ringana isn't a single hero product — it's a tightly curated system for skin and body, all held to the same bar: made fresh, formulated with plant actives at full potency, and free of what doesn't need to be there.</p>
+    </div>
+    <div class="cards3">
+      <div class="card">
+        <span class="tag">Skincare</span>
+        <h3>FRESH</h3>
+        <p>Cleansers, serums, creams, deodorant, and body care — concentrated plant actives at full strength, without the synthetic preservatives that give conventional formulas their shelf life.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Supplements</span>
+        <h3>CAPS</h3>
+        <p>Targeted plant-based capsules for immunity, focus, joints, and hormonal balance — the kind of daily support I look for in my own work with women in midlife.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Daily Nutrition</span>
+        <h3>PACKS</h3>
+        <p>Portioned sachets of concentrated plant nutrition for antioxidant support and everyday cellular protection — easy to build into a routine that already has enough moving parts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="opportunity">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The Opportunity</span>
+      <h2>Why this moment doesn't repeat.</h2>
+      <p>Ringana spent three decades becoming a household name across Europe, then expanded into Mexico, Colombia, and Peru. In 2026, it enters the United States for the very first time.</p>
+    </div>
+    <div class="opp-grid">
+      <div class="opp-list">
+        <div class="opp-item">
+          <div class="opp-num">01</div>
+          <div><h3>A market that's ready</h3><p>American consumers are reading labels more closely than ever. Demand for genuinely clean, transparently made products has never been higher.</p></div>
+        </div>
+        <div class="opp-item">
+          <div class="opp-num">02</div>
+          <div><h3>Built on real products</h3><p>A business grounded in a routine people reorder because it works for them — not a garage full of inventory nobody asked for.</p></div>
+        </div>
+        <div class="opp-item">
+          <div class="opp-num">03</div>
+          <div><h3>Founding-era timing</h3><p>After three decades across Europe and Latin America, the U.S. is a once-in-a-generation opening. The people who step in now help shape what it becomes here.</p></div>
+        </div>
+      </div>
+      <div class="opp-card">
+        <div class="num-big">$85M</div>
+        <p>Ringana's new headquarters, production, and distribution facility in Roanoke, Virginia — a real American home, not a warehouse strategy. This is a three-decade family company opening its first U.S. chapter, not a startup testing an idea.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <img src="luisa-about.jpg" alt="Luisa Fischer">
+      <div>
+        <span class="eyebrow">Who's behind this</span>
+        <h2>Hi, I'm Luisa.</h2>
+        <p>I spent thirteen years as a special education teacher in Germany before I stepped fully into the work I do now: helping women understand what's actually happening in their bodies during perimenopause, and helping their daughters understand puberty before it becomes confusing or frightening. Precision matters to me — I don't say something is true unless I can point to the science behind it.</p>
+        <p>I found Ringana during my second parental leave, half-looking for a way to build something of my own around my family rather than in spite of it. What kept me was the same thing that keeps me in my educational work: nothing oversold, nothing dumbed down, just a genuinely well-made product I could stand behind. Nine years and a team of over 500 women later, it's still the part of my week I look forward to most.</p>
+        <p class="script">America is Ringana's next chapter — and I'd love to help the people my husband and I know here be part of writing it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="signup">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Be first when Ringana arrives.</h2>
+      <p>Join the early list and you'll get the U.S. launch date before anyone else, honest first impressions of the products as I try them, and first pick if you'd like to build this alongside me.</p>
+    </div>
+    <form class="signup" action="https://formsubmit.co/hallohormone@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New Ringana US early access signup">
+      <input type="hidden" name="_next" value="thank-you.html">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="email" name="email" placeholder="Your email address" required>
+      <button type="submit">Get Early Access</button>
+    </form>
+    <p class="fineprint">No spam, ever. Just launch updates and honest notes — unsubscribe any time.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="flex-direction:column;">
+    <div class="wrap" style="padding:0; display:flex; justify-content:space-between; flex-wrap:wrap;">
+      <span>Ringana · with Luisa</span>
+      <span>Questions before launch? <a href="mailto:hallohormone@gmail.com">Email me</a> — I read every message.</span>
+    </div>
+    <p class="disclaimer">Luisa Fischer is an independent Ringana partner (U.S. offering pending official launch). This is a personal page and not an official Ringana corporate website. Product details reflect Ringana's current international lineup; the U.S. offering will be confirmed at launch.</p>
+  </div>
+</footer>
+
+</body>
+</html>
