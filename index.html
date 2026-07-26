@@ -58,11 +58,12 @@
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
-  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
-  .brand{font-family:'Fraunces', serif; font-size:19px; font-weight:500;}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px; gap:12px;}
+  .brand{font-family:'Fraunces', serif; font-size:19px; font-weight:500; white-space:nowrap;}
   .navlinks{display:flex; gap:28px; font-size:14.5px; font-weight:500;}
   .navlinks a{text-decoration:none; opacity:0.75; transition:opacity .2s;}
   .navlinks a:hover{opacity:1;}
+  .nav-right{display:flex; align-items:center; gap:14px;}
   .navcta{
     background:var(--pine); color:var(--cream);
     padding:10px 20px; border-radius:100px;
@@ -71,29 +72,55 @@
   }
   .navtoggle{
     display:none; background:none; border:none; cursor:pointer;
-    width:38px; height:38px; padding:0; align-items:center; justify-content:center;
+    width:34px; height:34px; padding:0; align-items:center; justify-content:center;
+    flex-shrink:0;
   }
   .navtoggle span, .navtoggle span::before, .navtoggle span::after{
-    content:''; display:block; width:22px; height:2px; background:var(--espresso);
+    content:''; display:block; width:20px; height:2px; background:var(--espresso);
     position:relative; transition:transform .2s ease, opacity .2s ease;
   }
-  .navtoggle span::before{ position:absolute; top:-7px; }
-  .navtoggle span::after{ position:absolute; top:7px; }
+  .navtoggle span::before{ position:absolute; top:-6px; }
+  .navtoggle span::after{ position:absolute; top:6px; }
   .navtoggle.open span{ background:transparent; }
-  .navtoggle.open span::before{ transform:translateY(7px) rotate(45deg); }
-  .navtoggle.open span::after{ transform:translateY(-7px) rotate(-45deg); }
+  .navtoggle.open span::before{ transform:translateY(6px) rotate(45deg); }
+  .navtoggle.open span::after{ transform:translateY(-6px) rotate(-45deg); }
+
+  /* Mobile nav overlay — sits on top of the page, doesn't push content down */
   .navpanel{
-    display:none; flex-direction:column; gap:2px;
-    padding:10px 0 18px; border-top:1px solid var(--line);
+    display:none;
+    position:fixed; top:0; right:0; z-index:100;
+    width:min(78vw, 300px); height:100vh;
+    background:var(--cream);
+    flex-direction:column;
+    padding:20px 24px;
+    box-shadow:-16px 0 40px rgba(58,63,48,0.18);
+    transform:translateX(100%);
+    transition:transform .25s ease;
+  }
+  .navpanel.open{ display:flex; transform:translateX(0); }
+  .navpanel-head{display:flex; justify-content:flex-end; margin-bottom:18px;}
+  .navpanel-close{
+    background:none; border:none; cursor:pointer; font-size:20px;
+    color:var(--espresso); width:32px; height:32px;
   }
   .navpanel a{
-    text-decoration:none; color:var(--espresso); font-weight:600; font-size:15.5px;
-    padding:12px 4px; border-bottom:1px solid var(--line);
+    text-decoration:none; color:var(--espresso); font-weight:600; font-size:16px;
+    padding:13px 2px; border-bottom:1px solid var(--line);
   }
-  .navpanel.open{display:flex;}
+  .navpanel a:last-of-type{border-bottom:none;}
+  .navpanel-backdrop{
+    display:none; position:fixed; inset:0; z-index:99;
+    background:rgba(58,63,48,0.35);
+  }
+  .navpanel-backdrop.open{display:block;}
   @media(max-width:720px){
     .navlinks{display:none;}
     .navtoggle{display:flex;}
+    .brand{font-size:16.5px;}
+    .navcta{padding:9px 16px; font-size:13px;}
+  }
+  @media(max-width:400px){
+    .navcta{display:none;}
   }
 
   /* HERO */
@@ -374,16 +401,23 @@
       <a href="#opportunity">The Opportunity</a>
       <a href="#about">About Me</a>
     </div>
-    <a class="navcta" href="#signup" onclick="openEarlyAccessModal(event)">Get Early Access</a>
-    <button class="navtoggle" id="navToggle" aria-label="Menu" aria-expanded="false" onclick="toggleNavPanel()"><span></span></button>
-  </div>
-  <div class="wrap navpanel" id="navPanel">
-    <a href="#story" onclick="closeNavPanel()">The Story</a>
-    <a href="#products" onclick="closeNavPanel()">The Products</a>
-    <a href="#opportunity" onclick="closeNavPanel()">The Opportunity</a>
-    <a href="#about" onclick="closeNavPanel()">About Me</a>
+    <div class="nav-right">
+      <a class="navcta" href="#signup" onclick="openEarlyAccessModal(event)">Get Early Access</a>
+      <button class="navtoggle" id="navToggle" aria-label="Menu" aria-expanded="false" onclick="toggleNavPanel()"><span></span></button>
+    </div>
   </div>
 </nav>
+
+<div class="navpanel-backdrop" id="navBackdrop" onclick="closeNavPanel()"></div>
+<div class="navpanel" id="navPanel">
+  <div class="navpanel-head">
+    <button class="navpanel-close" aria-label="Close menu" onclick="closeNavPanel()">✕</button>
+  </div>
+  <a href="#story" onclick="closeNavPanel()">The Story</a>
+  <a href="#products" onclick="closeNavPanel()">The Products</a>
+  <a href="#opportunity" onclick="closeNavPanel()">The Opportunity</a>
+  <a href="#about" onclick="closeNavPanel()">About Me</a>
+</div>
 
 <section class="hero">
   <div class="wrap">
@@ -800,16 +834,21 @@
   // ---- Mobile nav toggle ----
   function toggleNavPanel(){
     const panel = document.getElementById('navPanel');
+    const backdrop = document.getElementById('navBackdrop');
     const btn = document.getElementById('navToggle');
     const isOpen = panel.classList.toggle('open');
+    backdrop.classList.toggle('open', isOpen);
     btn.classList.toggle('open', isOpen);
     btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   }
   function closeNavPanel(){
     document.getElementById('navPanel').classList.remove('open');
+    document.getElementById('navBackdrop').classList.remove('open');
     const btn = document.getElementById('navToggle');
     btn.classList.remove('open');
     btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
   }
 
   // ---- Product carousel ----
