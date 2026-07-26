@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You — Ringana with Luisa</title>
+<meta name="description" content="You're on the list — thank you for signing up for early access to Ringana in America.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F1F3EC;
+    --cream-deep:#E4E9D8;
+    --blush:#D6E0C6;
+    --rose:#7C9268;
+    --espresso:#3A3F30;
+    --pine:#5F7350;
+    --pine-soft:#6F8560;
+    --line:rgba(58,63,48,0.14);
+    --max:640px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; min-height:100vh;
+    background:var(--cream); color:var(--espresso);
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+  }
+  h1{
+    font-family:'Fraunces', serif; font-weight:500; line-height:1.15;
+    margin:0 0 18px; color:var(--espresso); font-size:clamp(30px,5vw,42px);
+  }
+  em{font-style:italic; color:var(--rose);}
+  .card{
+    max-width:var(--max); width:100%;
+    background:#fff; border-radius:22px; padding:56px 44px;
+    box-shadow:0 24px 60px rgba(58,63,48,0.12);
+    text-align:center;
+  }
+  .eyebrow{
+    font-size:13px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--rose); font-weight:600; margin-bottom:16px; display:inline-block;
+  }
+  p.lede{font-size:17px; opacity:0.82; margin:0 auto 8px; max-width:44ch;}
+  .checkmark{
+    width:56px; height:56px; border-radius:50%; background:var(--blush);
+    display:flex; align-items:center; justify-content:center; margin:0 auto 26px;
+  }
+  .checkmark svg{width:26px; height:26px;}
+  .next-steps{
+    text-align:left; margin-top:34px; padding-top:30px; border-top:1px solid var(--line);
+  }
+  .next-steps h2{
+    font-family:'Fraunces', serif; font-weight:500; font-size:18px; margin:0 0 14px; color:var(--espresso);
+  }
+  .next-steps ul{margin:0; padding:0; list-style:none;}
+  .next-steps li{
+    display:flex; gap:12px; font-size:15px; opacity:0.85; margin-bottom:12px; align-items:flex-start;
+  }
+  .next-steps li:last-child{margin-bottom:0;}
+  .next-steps .dot{
+    width:6px; height:6px; border-radius:50%; background:var(--rose); margin-top:8px; flex-shrink:0;
+  }
+  .btn-primary{
+    display:inline-block; margin-top:34px;
+    background:var(--pine); color:var(--cream);
+    padding:15px 30px; border-radius:100px; text-decoration:none;
+    font-weight:600; font-size:15px; transition:background .2s;
+  }
+  .btn-primary:hover{background:var(--pine-soft);}
+  .fineprint{font-size:13px; opacity:0.6; margin-top:26px;}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="checkmark">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 12.5L9.5 18L20 6" stroke="#3A3F30" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <span class="eyebrow">You're on the list</span>
+  <h1>Thank you — <em>you're in.</em></h1>
+  <p class="lede">I'll personally email you the moment Ringana launches in America, with honest first impressions and the exact date before anyone else hears it.</p>
+
+  <div class="next-steps">
+    <h2>What happens next</h2>
+    <ul>
+      <li><span class="dot"></span>You'll get an email confirming you're on the early-access list — check your inbox (and spam folder, just in case).</li>
+      <li><span class="dot"></span>As the U.S. launch date is confirmed, you'll hear it from me directly, before any public announcement.</li>
+      <li><span class="dot"></span>If you mentioned the business side, I'll personally reach out to talk it through — no pressure, no pitch.</li>
+    </ul>
+  </div>
+
+  <a class="btn-primary" href="index.html">Back to the page</a>
+  <p class="fineprint">Questions before launch? Email <a href="mailto:hallohormone@gmail.com" style="color:inherit;">hallohormone@gmail.com</a> — I read every message.</p>
+</div>
+
+</body>
+</html>

@@ -10,14 +10,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --cream:#FBF6E9;
-    --cream-deep:#F0DBA0;
-    --blush:#D9A441;
-    --rose:#A8752A;
-    --espresso:#3B3220;
-    --pine:#48542F;
-    --pine-soft:#5A683C;
-    --line:rgba(59,50,32,0.14);
+    --cream:#F1F3EC;
+    --cream-deep:#E4E9D8;
+    --blush:#D6E0C6;
+    --rose:#7C9268;
+    --espresso:#3A3F30;
+    --pine:#5F7350;
+    --pine-soft:#6F8560;
+    --line:rgba(58,63,48,0.14);
     --max:1120px;
   }
   *{box-sizing:border-box;}
@@ -69,7 +69,32 @@
     font-size:14px; font-weight:600; text-decoration:none;
     white-space:nowrap;
   }
-  @media(max-width:720px){ .navlinks{display:none;} }
+  .navtoggle{
+    display:none; background:none; border:none; cursor:pointer;
+    width:38px; height:38px; padding:0; align-items:center; justify-content:center;
+  }
+  .navtoggle span, .navtoggle span::before, .navtoggle span::after{
+    content:''; display:block; width:22px; height:2px; background:var(--espresso);
+    position:relative; transition:transform .2s ease, opacity .2s ease;
+  }
+  .navtoggle span::before{ position:absolute; top:-7px; }
+  .navtoggle span::after{ position:absolute; top:7px; }
+  .navtoggle.open span{ background:transparent; }
+  .navtoggle.open span::before{ transform:translateY(7px) rotate(45deg); }
+  .navtoggle.open span::after{ transform:translateY(-7px) rotate(-45deg); }
+  .navpanel{
+    display:none; flex-direction:column; gap:2px;
+    padding:10px 0 18px; border-top:1px solid var(--line);
+  }
+  .navpanel a{
+    text-decoration:none; color:var(--espresso); font-weight:600; font-size:15.5px;
+    padding:12px 4px; border-bottom:1px solid var(--line);
+  }
+  .navpanel.open{display:flex;}
+  @media(max-width:720px){
+    .navlinks{display:none;}
+    .navtoggle{display:flex;}
+  }
 
   /* HERO */
   .hero{padding:76px 0 60px;}
@@ -111,6 +136,8 @@
   @media(max-width:720px){ .stats{grid-template-columns:repeat(2,1fr);} }
   .stat b{font-family:'Fraunces', serif; font-size:30px; font-weight:500; display:block;}
   .stat span{font-size:13.5px; opacity:0.7;}
+  .stats-footnote{font-size:12px; opacity:0.55; margin-top:18px; max-width:70ch;}
+  .stats-footnote a{color:inherit;}
 
   /* SECTION GENERIC */
   section{padding:80px 0;}
@@ -226,12 +253,13 @@
   .modal-box h2{font-size:28px; margin-bottom:16px;}
   .modal-box p.modal-lede{font-size:15.5px; opacity:0.82; margin-bottom:26px; max-width:42ch;}
   .modal-form{display:flex; flex-direction:column; gap:12px;}
-  .modal-form input{
+  .modal-form input, .modal-form select{
     width:100%; padding:14px 16px; border-radius:10px;
     border:1.5px solid var(--line); background:#fff;
     font-family:inherit; font-size:15px; color:var(--espresso);
   }
-  .modal-form input:focus{outline:none; border-color:var(--rose);}
+  .modal-form select{cursor:pointer;}
+  .modal-form input:focus, .modal-form select:focus{outline:none; border-color:var(--rose);}
   .modal-form button{margin-top:6px;}
   .modal-fineprint{font-size:12.5px; opacity:0.65; margin-top:16px;}
 
@@ -298,16 +326,37 @@
   .cta-section{background:var(--pine); color:var(--cream);}
   .cta-section .section-head p{color:var(--cream); opacity:0.82;}
   .cta-section .section-head h2{color:var(--cream);}
-  form.signup{display:flex; gap:12px; max-width:480px; flex-wrap:wrap;}
-  form.signup input[type=email]{
+  form.signup{display:flex; gap:12px; max-width:560px; flex-wrap:wrap;}
+  form.signup input[type=email],
+  form.signup input[type=tel],
+  form.signup select{
     flex:1; min-width:220px; padding:15px 18px; border-radius:100px; border:none;
-    font-family:'Plus Jakarta Sans', sans-serif; font-size:15px;
+    font-family:'Plus Jakarta Sans', sans-serif; font-size:15px; color:var(--espresso);
   }
+  form.signup select{ min-width:260px; cursor:pointer; }
   form.signup button{
     background:var(--blush); color:var(--espresso); border:none;
     padding:15px 26px; border-radius:100px; font-weight:700; font-size:15px; cursor:pointer;
+    flex:1; min-width:200px;
   }
   .fineprint{font-size:13px; opacity:0.6; margin-top:16px;}
+
+  /* FAQ */
+  .faq{background:#fff;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-item:first-child{border-top:1px solid var(--line);}
+  .faq-item summary{
+    padding:22px 4px; font-family:'Fraunces', serif; font-size:18px; font-weight:500;
+    cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center;
+    gap:16px;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{
+    content:'+'; font-size:22px; font-weight:400; color:var(--rose); flex-shrink:0;
+    transition:transform .2s ease;
+  }
+  .faq-item[open] summary::after{transform:rotate(45deg);}
+  .faq-item p{margin:0 0 22px; padding:0 4px; font-size:15.5px; opacity:0.8; max-width:66ch;}
 
   footer{padding:44px 0; border-top:1px solid var(--line);}
   footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:13.5px; opacity:0.7;}
@@ -326,6 +375,13 @@
       <a href="#about">About Me</a>
     </div>
     <a class="navcta" href="#signup" onclick="openEarlyAccessModal(event)">Get Early Access</a>
+    <button class="navtoggle" id="navToggle" aria-label="Menu" aria-expanded="false" onclick="toggleNavPanel()"><span></span></button>
+  </div>
+  <div class="wrap navpanel" id="navPanel">
+    <a href="#story" onclick="closeNavPanel()">The Story</a>
+    <a href="#products" onclick="closeNavPanel()">The Products</a>
+    <a href="#opportunity" onclick="closeNavPanel()">The Opportunity</a>
+    <a href="#about" onclick="closeNavPanel()">About Me</a>
   </div>
 </nav>
 
@@ -349,9 +405,10 @@
     <div class="stats">
       <div class="stat"><b>1996</b><span>Founded in Austria, family-led today</span></div>
       <div class="stat"><b>30+</b><span>Countries where Ringana is sold</span></div>
-      <div class="stat"><b>500+</b><span>Women on my own team worldwide</span></div>
-      <div class="stat"><b>$85M</b><span>New U.S. production investment</span></div>
+      <div class="stat"><b>500+</b><span>Women on my own team worldwide<sup>*</sup></span></div>
+      <div class="stat"><b>$85M</b><span>New U.S. production investment<sup>†</sup></span></div>
     </div>
+    <p class="stats-footnote">*Team size reflects Luisa's personal Ringana organization as of 2026. †Investment figure per Ringana's official company announcement.</p>
   </div>
 </section>
 
@@ -448,7 +505,7 @@
       <div class="section-head" style="text-align:center; margin:0 auto 40px;">
         <span class="eyebrow">On My Radar</span>
         <h2>A first look at what's coming.</h2>
-        <p style="margin-left:auto; margin-right:auto;">The full U.S. lineup is still being finalized, but as a Ringana partner I already have early access. These seven are just the start — swipe through for a first impression.</p>
+        <p style="margin-left:auto; margin-right:auto;">The full U.S. lineup is still being finalized, but as a Ringana partner I already have early access. These nine are just the start — swipe through for a first impression.</p>
       </div>
 
       <div class="carousel">
@@ -457,79 +514,101 @@
 
         <div class="carousel-slide active">
           <div class="carousel-img"><img src="product-chi.jpg" alt="Ringana Chi"></div>
-          <div class="carousel-eyebrow">Drinks · Energie</div>
+          <div class="carousel-eyebrow">Drinks · Energy</div>
           <div class="carousel-name"><b>Chi</b></div>
-          <p class="carousel-desc">Ein natürlicher Energie-Shot mit Ingwer, Matcha und Ginseng — für Fokus, ohne die Nervosität von klassischem Koffein. [Platzhaltertext — bitte final formulieren]</p>
+          <p class="carousel-desc">A natural energy shot with ginger, matcha, and ginseng — for focus, without the jitters of classic caffeine. [Placeholder — final copy pending]</p>
           <div class="carousel-chips">
-            <span class="carousel-chip">Natürliche Energie</span>
-            <span class="carousel-chip">Konzentration</span>
+            <span class="carousel-chip">Natural Energy</span>
+            <span class="carousel-chip">Focus</span>
           </div>
         </div>
 
         <div class="carousel-slide">
           <div class="carousel-img"><img src="product-packs-abc.jpg" alt="Ringana Packs A, B, C"></div>
-          <div class="carousel-eyebrow">Packs · Tägliche Basis</div>
+          <div class="carousel-eyebrow">Packs · Daily Foundation</div>
           <div class="carousel-name"><b>Packs A · B · C</b></div>
-          <p class="carousel-desc">Portionierte Nährstoffpulver für drei tägliche Bedürfnisse: Zellschutz, Säure-Basen-Balance und Verdauung. [Platzhaltertext — bitte final formulieren]</p>
+          <p class="carousel-desc">Portioned nutrient powders for three daily needs: cell protection, acid-base balance, and digestion. [Placeholder — final copy pending]</p>
           <div class="carousel-chips">
-            <span class="carousel-chip">Zellschutz</span>
-            <span class="carousel-chip">Säure-Basen-Balance</span>
-            <span class="carousel-chip">Verdauung</span>
+            <span class="carousel-chip">Cell Protection</span>
+            <span class="carousel-chip">Acid-Base Balance</span>
+            <span class="carousel-chip">Digestion</span>
           </div>
         </div>
 
         <div class="carousel-slide">
           <div class="carousel-img"><img src="product-caps-fem.jpg" alt="Ringana Caps FEM"></div>
-          <div class="carousel-eyebrow">Caps · Gezielte Unterstützung</div>
+          <div class="carousel-eyebrow">Caps · Targeted Support</div>
           <div class="carousel-name"><b>Caps FEM</b></div>
-          <p class="carousel-desc">Pflanzliche Kapseln, gezielt auf den weiblichen Hormonhaushalt abgestimmt — genau das Thema, das mich beruflich jeden Tag begleitet. [Platzhaltertext — bitte final formulieren]</p>
+          <p class="carousel-desc">Plant-based capsules formulated specifically for female hormonal balance — exactly the subject I work with professionally every day. [Placeholder — final copy pending]</p>
           <div class="carousel-chips">
-            <span class="carousel-chip">Hormonelle Balance</span>
-            <span class="carousel-chip">Frauengesundheit</span>
+            <span class="carousel-chip">Hormonal Balance</span>
+            <span class="carousel-chip">Women's Health</span>
           </div>
         </div>
 
         <div class="carousel-slide">
           <div class="carousel-img"><img src="product-dea.jpg" alt="Ringana Dea"></div>
-          <div class="carousel-eyebrow">Drinks · Stoffwechsel</div>
+          <div class="carousel-eyebrow">Drinks · Metabolism</div>
           <div class="carousel-name"><b>Dea</b></div>
-          <p class="carousel-desc">Ein funktioneller Shot zur Stoffwechselunterstützung, ganz ohne künstliche Süß- oder Farbstoffe. [Platzhaltertext — bitte final formulieren]</p>
+          <p class="carousel-desc">A functional shot for metabolic support, entirely free of artificial sweeteners or colors. [Placeholder — final copy pending]</p>
           <div class="carousel-chips">
-            <span class="carousel-chip">Stoffwechsel</span>
-            <span class="carousel-chip">Ohne Zusatzstoffe</span>
+            <span class="carousel-chip">Metabolism</span>
+            <span class="carousel-chip">No Additives</span>
           </div>
         </div>
 
         <div class="carousel-slide">
           <div class="carousel-img"><img src="product-skincare-set.jpg" alt="Ringana Fresh Skin Care Set"></div>
-          <div class="carousel-eyebrow">Fresh · Hautpflege-Set</div>
+          <div class="carousel-eyebrow">Fresh · Skin Care Set</div>
           <div class="carousel-name"><b>Skin Care Set Medium</b></div>
-          <p class="carousel-desc">Ein abgestimmtes Pflegeset inklusive alternativem Tonic — frisch hergestellt, mit hochkonzentrierten Pflanzenwirkstoffen. [Platzhaltertext — bitte final formulieren]</p>
+          <p class="carousel-desc">A coordinated care set including alternating tonic — freshly made, with highly concentrated plant actives. [Placeholder — final copy pending]</p>
           <div class="carousel-chips">
-            <span class="carousel-chip">Frisch produziert</span>
-            <span class="carousel-chip">Komplettroutine</span>
+            <span class="carousel-chip">Freshly Made</span>
+            <span class="carousel-chip">Complete Routine</span>
           </div>
         </div>
 
         <div class="carousel-slide">
           <div class="carousel-img"><img src="product-overnight.jpg" alt="Ringana Fresh Overnight Face Treatment"></div>
-          <div class="carousel-eyebrow">Fresh · Nachtpflege</div>
+          <div class="carousel-eyebrow">Fresh · Night Care</div>
           <div class="carousel-name"><b>Overnight Face Treatment</b></div>
-          <p class="carousel-desc">Eine intensive Nachtpflege, die während der Regenerationsphase der Haut wirkt. [Platzhaltertext — bitte final formulieren]</p>
+          <p class="carousel-desc">An intensive night treatment that works during the skin's natural regeneration phase. [Placeholder — final copy pending]</p>
           <div class="carousel-chips">
             <span class="carousel-chip">Regeneration</span>
-            <span class="carousel-chip">Intensivpflege</span>
+            <span class="carousel-chip">Intensive Care</span>
           </div>
         </div>
 
         <div class="carousel-slide">
           <div class="carousel-img"><img src="product-foot-balm.jpg" alt="Ringana Fresh Foot Balm"></div>
-          <div class="carousel-eyebrow">Fresh · Körperpflege</div>
+          <div class="carousel-eyebrow">Fresh · Body Care</div>
           <div class="carousel-name"><b>Foot Balm</b></div>
-          <p class="carousel-desc">Eine pflegende Fußbalsam-Rezeptur mit natürlichen Wirkstoffen für den täglichen Gebrauch. [Platzhaltertext — bitte final formulieren]</p>
+          <p class="carousel-desc">A nourishing foot balm formula with natural active ingredients for everyday use. [Placeholder — final copy pending]</p>
           <div class="carousel-chips">
-            <span class="carousel-chip">Pflege im Alltag</span>
-            <span class="carousel-chip">Natürliche Wirkstoffe</span>
+            <span class="carousel-chip">Everyday Care</span>
+            <span class="carousel-chip">Natural Actives</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="carousel-img"><img src="product-baby-bum-cream.jpg" alt="Ringana Fresh Baby Bum Cream"></div>
+          <div class="carousel-eyebrow">Fresh Baby · Diaper Care</div>
+          <div class="carousel-name"><b>Baby Bum Cream</b></div>
+          <p class="carousel-desc">A soothing diaper cream that protects sensitive baby skin, calms redness and irritation, and helps prevent chafing — with almond, sesame, and jojoba oil, no added fragrance. [Placeholder — final copy pending]</p>
+          <div class="carousel-chips">
+            <span class="carousel-chip">For Sensitive Skin</span>
+            <span class="carousel-chip">No Fragrance</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="carousel-img"><img src="product-sunscreen-spf25.jpg" alt="Ringana Fresh Sunscreen Medium SPF 25"></div>
+          <div class="carousel-eyebrow">Fresh · Sun Care</div>
+          <div class="carousel-name"><b>Sunscreen Medium SPF 25</b></div>
+          <p class="carousel-desc">A mineral, water-resistant sunscreen built on zinc oxide, nourishing plant oils, and antioxidant astaxanthin — reef-safe and free of chemical UV filters. [Placeholder — final copy pending]</p>
+          <div class="carousel-chips">
+            <span class="carousel-chip">Mineral UV Filter</span>
+            <span class="carousel-chip">Water-Resistant</span>
           </div>
         </div>
 
@@ -541,6 +620,8 @@
           <span class="carousel-dot" onclick="carouselGoTo(4)"></span>
           <span class="carousel-dot" onclick="carouselGoTo(5)"></span>
           <span class="carousel-dot" onclick="carouselGoTo(6)"></span>
+          <span class="carousel-dot" onclick="carouselGoTo(7)"></span>
+          <span class="carousel-dot" onclick="carouselGoTo(8)"></span>
         </div>
       </div>
     </div>
@@ -574,6 +655,7 @@
       <div class="opp-card">
         <div class="num-big">$85M</div>
         <p>Ringana's new headquarters, production, and distribution facility in Roanoke, Virginia — a real American home, not a warehouse strategy. This is a three-decade family company opening its first U.S. chapter, not a startup testing an idea.</p>
+        <p style="font-size:12.5px; opacity:0.65; margin-top:14px;">Figure per Ringana's official company announcement.</p>
       </div>
     </div>
   </div>
@@ -596,6 +678,35 @@
   </div>
 </section>
 
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Before You Sign Up</span>
+      <h2>A few honest answers.</h2>
+    </div>
+    <details class="faq-item">
+      <summary>Is Ringana available in the U.S. yet?</summary>
+      <p>Not yet — the official U.S. launch is still ahead, tied to the new Roanoke, Virginia facility. Joining the early list gets you the exact launch date as soon as it's confirmed, before any public announcement.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do I have to buy anything to sign up?</summary>
+      <p>No. Signing up here just adds you to the early-access list — product updates and honest first impressions, with no purchase or commitment attached.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How does the business side actually work?</summary>
+      <p>Ringana is sold through independent partners rather than retail stores. If that's something you're curious about, tell me on the form and I'll walk you through what it actually looks like day to day — no pressure, no pitch.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Is this an official Ringana website?</summary>
+      <p>No — this is my personal page as an independent Ringana partner. Product details reflect Ringana's current international lineup; the confirmed U.S. offering will be shared at launch.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Will I be contacted by phone if I share my number?</summary>
+      <p>Only if you'd like me to — sharing your number is optional and just makes it easier for me to reach you directly if you ask a question or want to talk through the business side.</p>
+    </details>
+  </div>
+</section>
+
 <section class="cta-section" id="signup">
   <div class="wrap">
     <div class="section-head">
@@ -607,6 +718,13 @@
       <input type="hidden" name="_next" value="thank-you.html">
       <input type="hidden" name="_captcha" value="false">
       <input type="email" name="email" placeholder="Your email address" required>
+      <input type="tel" name="phone" placeholder="Phone number (optional)">
+      <select name="interest" aria-label="What are you most interested in?">
+        <option value="" selected disabled>What are you most interested in?</option>
+        <option value="products">The products</option>
+        <option value="business">The business opportunity</option>
+        <option value="both">Both</option>
+      </select>
       <button type="submit">Get Early Access</button>
     </form>
     <p class="fineprint">No spam, ever. Just launch updates and honest notes — unsubscribe any time.</p>
@@ -634,7 +752,13 @@
       <input type="hidden" name="_captcha" value="false">
       <input type="text" name="first_name" placeholder="First name" required>
       <input type="email" name="email" placeholder="Email address" required>
-      <input type="tel" name="phone" placeholder="Phone number">
+      <input type="tel" name="phone" placeholder="Phone number (optional)">
+      <select name="interest" aria-label="What are you most interested in?">
+        <option value="" selected disabled>What are you most interested in?</option>
+        <option value="products">The products</option>
+        <option value="business">The business opportunity</option>
+        <option value="both">Both</option>
+      </select>
       <button type="submit" class="btn-primary">Be the first to know</button>
     </form>
     <p class="modal-fineprint">No spam, ever. Just launch updates and honest notes — unsubscribe any time.</p>
@@ -658,12 +782,35 @@
   document.getElementById('earlyAccessModal').addEventListener('click', function(e){
     if(e.target === this) closeEarlyAccessModal();
   });
-  // Auto-open once per browser session, a few seconds after load
-  window.addEventListener('load', function(){
-    if(!sessionStorage.getItem('earlyAccessSeen')){
-      setTimeout(openEarlyAccessModal, 4000);
-    }
-  });
+  // Auto-open once per session, triggered when the visitor reaches the Story
+  // section — not on a blind timer, so it only shows once someone is actually engaged.
+  const storySection = document.getElementById('story');
+  if(storySection){
+    const modalObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting && !sessionStorage.getItem('earlyAccessSeen')){
+          openEarlyAccessModal();
+          modalObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    modalObserver.observe(storySection);
+  }
+
+  // ---- Mobile nav toggle ----
+  function toggleNavPanel(){
+    const panel = document.getElementById('navPanel');
+    const btn = document.getElementById('navToggle');
+    const isOpen = panel.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+  function closeNavPanel(){
+    document.getElementById('navPanel').classList.remove('open');
+    const btn = document.getElementById('navToggle');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
 
   // ---- Product carousel ----
   let carouselIndex = 0;
